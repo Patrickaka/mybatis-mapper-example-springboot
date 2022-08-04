@@ -1,9 +1,9 @@
 # 模板的名字，生成代码的根目录名称
-name: mybatis-mapper-example-springboot
+name: thirdPlatformServiceCtrlImpl
 # 代码生成的路径，可以使用 SYS 和 ENV 等变量，具体包含的内容和运行环境有关
 # user.dir 为当前运行命令的目录，path 不设置时的默认值也是当前路径，在命令行中可以通过 —o 重新指定位置
 # 当 path 路径以 .zip 后缀结尾时，会将生成的目录结构和代码放到压缩包中
-path: ${SYS['user.dir']}/../../
+path: D:/git2/java-third-platform/platform
 # 模板文件所在路径，默认为相对 path 所在的位置，不设置时和 path 相同
 templates: mapper-templates
 # 数据库配置
@@ -20,7 +20,7 @@ database:
     # 用户名
     user: root
     # 密码
-    password:
+    password: 1234
   # 获取表配置，支持 % 和 _ 模糊匹配，可以配置多个值
   # 还有一个支持复杂规则 tableRules 属性后续单独介绍
   tables:
@@ -42,7 +42,7 @@ database:
 # 附加属性
 attrs: # 子目录（文件）可以通过 parent.parent...attrs.属性名 可以逐级向上使用属性
   # 这里设置了一个基础包名
-  basePackage: io.mybatis.example.springboot
+  basePackage: com.wanshun.thirdplatform
 # 子目录（文件）
 files:
   # 文件名，可以 / 设置多级目录
@@ -90,6 +90,12 @@ files:
                     # 此处有2种模板示例，分别列出来加了注释
                     file: model.java
                     # file: model-lombok.java
+                    iter: tables
+              - name: rpcimpl
+                files:
+                  - name: 'Rpc${it.name.className}ServiceImpl.java'
+                    # 此处有2种模板示例，分别列出来加了注释
+                    file: rpcServiceImpl.java
                     iter: tables
               - name: service
                 files:
